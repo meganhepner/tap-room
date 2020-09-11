@@ -30,6 +30,11 @@ class KegControl extends React.Component {
       }
     }
 
+    iterateKegSize = (id) => {
+      const kegToIterate = this.state.masterKegList.filter(keg => keg.id === id)[0];
+      this.setState({kegToIterate.kegSize: kegToIterate.kegSize--})
+    }
+
     handleAddingNewKegToList = (newKeg) => {
       const newMasterKegList = this.state.masterKegList.concat(newKeg);
       this.setState({masterKegList: newMasterKegList,
@@ -79,7 +84,7 @@ class KegControl extends React.Component {
       <React.Fragment>
         {currentlyVisibleState}
         <button onClick={this.handleClick}>{buttonText}</button>
-    </React.Fragment>
+      </React.Fragment>
     );
   }
 }

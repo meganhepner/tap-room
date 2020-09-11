@@ -9,7 +9,7 @@ function Keg(props) {
         <p>Price per pint:{props.price}</p>
         <p>ABV:{props.alcoholContent}</p>
       </div>
-      <button type='submit'>Sell Pint</button>
+      <button onClick={this.iterateKegSize}>Sell Pint</button>
     </React.Fragment>
   );
 }

@@ -15,7 +15,6 @@ function ReusableForm(props){
           placeholder='Brand Name' />
         <input
           type='number'
-          step='0.01'
           name='price'
           placeholder='Price per Pint' />
         <input

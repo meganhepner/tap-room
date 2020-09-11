@@ -30,10 +30,12 @@ class KegControl extends React.Component {
       }
     }
 
-    incrementKegSize = (id) => {
-      const kegToIterate = this.state.masterKegList.filter(keg => keg.id === id)[0];
-      const iteratedKeg = (kegToIterate.kegSize.count -1); //const newNumber = object.count -1
-      this.setState({kegToIterate: iteratedKeg})
+    incrementKegSize = (kegToIncrement) => {
+      const changedKeg = this.state.masterKegList
+        .filter(keg => keg.id !== this.state.selectedKeg.id)
+        .concat(kegToIncrement);
+      const iteratedKeg = (kegToIncrement.kegSize.count(-1));
+      this.setState({changedKeg: iteratedKeg})
     }
 
     handleAddingNewKegToList = (newKeg) => {
@@ -74,18 +76,18 @@ class KegControl extends React.Component {
       } else if (this.state.selectedKeg != null){
         currentlyVisibleState = <KegDetail 
                                 keg = {this.state.selectedKeg} 
-                                onClickingEdit = {this.handleEditClick} />
+                                onClickingEdit = {this.handleEditClick} 
+                                onClickingIncrement={this.incrementKegSize}/>
                                 buttonText="Return to Keg List";
       } else if (this.state.formVisibleOnPage){
         currentlyVisibleState = <NewKegForm 
                                 onNewKegCreation={this.handleAddingNewKegToList} />;
                                 buttonText="Return to Keg List";
       } else {
-        currentlyVisibleState=<KegList 
-                              kegList={this.state.masterKegList} 
-                              onKegSelection={this.handleChangingSelectedKeg}
-                              onClickingIncrement={this.incrementKegSize} />
-                              buttonText="Add Keg";
+        currentlyVisibleState = <KegList 
+                                kegList={this.state.masterKegList} 
+                                onKegSelection={this.handleChangingSelectedKeg} />
+                                buttonText="Add Keg";
       }
       
       

@@ -32,7 +32,7 @@ class KegControl extends React.Component {
 
     incrementKegSize = (id) => {
       const kegToIterate = this.state.masterKegList.filter(keg => keg.id === id)[0];
-      const iteratedKeg = (kegToIterate.kegSize(-1));
+      const iteratedKeg = (kegToIterate.kegSize.count -1); //const newNumber = object.count -1
       this.setState({kegToIterate: iteratedKeg})
     }
 
@@ -83,7 +83,8 @@ class KegControl extends React.Component {
       } else {
         currentlyVisibleState=<KegList 
                               kegList={this.state.masterKegList} 
-                              onKegSelection={this.handleChangingSelectedKeg} />
+                              onKegSelection={this.handleChangingSelectedKeg}
+                              onClickingIncrement={this.incrementKegSize} />
                               buttonText="Add Keg";
       }
       

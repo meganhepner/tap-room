@@ -30,9 +30,10 @@ class KegControl extends React.Component {
       }
     }
 
-    iterateKegSize = (id) => {
+    incrementKegSize = (id) => {
       const kegToIterate = this.state.masterKegList.filter(keg => keg.id === id)[0];
-      this.setState({kegToIterate.kegSize: kegToIterate.kegSize--})
+      const iteratedKeg = (kegToIterate.kegSize(-1));
+      this.setState({kegToIterate: iteratedKeg})
     }
 
     handleAddingNewKegToList = (newKeg) => {

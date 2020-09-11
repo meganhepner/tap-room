@@ -79,7 +79,7 @@ class KegControl extends React.Component {
       <React.Fragment>
         {currentlyVisibleState}
         <button onClick={this.handleClick}>{buttonText}</button>
-      </React.Fragment>
+    </React.Fragment>
     );
   }
 }

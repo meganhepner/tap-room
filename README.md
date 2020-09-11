@@ -21,7 +21,7 @@
 
 ## 🔍Component Diagram
 
-![Component Diagram](./src/assets/images/friday.png)
+![Component Diagram](./src/assets/images/friday.PNG)
 
 ## 🐛Known Bugs
 

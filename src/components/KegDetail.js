@@ -6,10 +6,10 @@ function KegDetail(props) {
   
   return(
     <React.Fragment>
-      <h1>Keg Details</h1>
+      <h2>Keg Details</h2>
       <h3>{keg.brand} {keg.name}</h3>
-      <p>Price per pint:{keg.price}</p>
-      <p>ABV:{keg.alcoholContent}</p>
+      <p>Price per pint: {keg.price}</p>
+      <p>ABV: {keg.alcoholContent}</p>
       <button onClick={props.onClickingEdit}>Update Keg</button>
       <hr />
     </React.Fragment>

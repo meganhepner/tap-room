@@ -9,7 +9,7 @@ function Keg(props) {
         <p>Price per pint:{props.price}</p>
         <p>ABV:{props.alcoholContent}</p>
       </div>
-      {/* <button onClick={props.incrementKegSize}>Sell Pint</button> */}
+      <button onClick={props.incrementKegSize}>Sell Pint</button>
     </React.Fragment>
   );
 }

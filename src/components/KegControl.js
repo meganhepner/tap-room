@@ -47,7 +47,7 @@ class KegControl extends React.Component {
       this.setState({selectedKeg: selectedKeg});
     }
 
-    handleEditKeg = () => {
+    handleEditClick = () => {
       this.setState({editing: true});
     }
 
@@ -67,17 +67,24 @@ class KegControl extends React.Component {
       let buttonText = null;
 
       if(this.state.editing){
-        currentlyVisibleState = <EditKegForm keg = {this.state.selectedKeg} onEditKeg = {this.handleEditingKegInList} />
-        buttonText = "Return to Keg List";
+        currentlyVisibleState = <EditKegForm 
+                                keg = {this.state.selectedKeg} 
+                                onEditKeg = {this.handleEditingKegInList} />
+                                buttonText = "Return to Keg List";
       } else if (this.state.selectedKeg != null){
-        currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingEdit = {this.handleEditClick} />
-        buttonText="Return to Keg List";
+        currentlyVisibleState = <KegDetail 
+                                keg = {this.state.selectedKeg} 
+                                onClickingEdit = {this.handleEditClick} />
+                                buttonText="Return to Keg List";
       } else if (this.state.formVisibleOnPage){
-        currentlyVisibleState = <NewKegForm onNewKegCreation={this.handleAddingNewKegToList} />;
-        buttonText="Return to Keg List";
+        currentlyVisibleState = <NewKegForm 
+                                onNewKegCreation={this.handleAddingNewKegToList} />;
+                                buttonText="Return to Keg List";
       } else {
-        currentlyVisibleState=<KegList kegList={this.state.masterKegList} onKegSelection={this.handleChangingSelectedKeg} />
-        buttonText="Add Keg";
+        currentlyVisibleState=<KegList 
+                              kegList={this.state.masterKegList} 
+                              onKegSelection={this.handleChangingSelectedKeg} />
+                              buttonText="Add Keg";
       }
       
       

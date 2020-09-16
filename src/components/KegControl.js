@@ -30,12 +30,15 @@ class KegControl extends React.Component {
       }
     }
 
-    incrementKegSize = (kegToIncrement) => {
-      const changedKeg = this.state.masterKegList
-        .filter(keg => keg.id !== this.state.selectedKeg.id)
-        .concat(kegToIncrement);
-      const iteratedKeg = (kegToIncrement.kegSize.count(-1));
-      this.setState({changedKeg: iteratedKeg})
+    decrementKegSize = (id) => {
+      const selectedKeg = this.state.masterKegList.filter(
+        (keg) => keg.id === id
+      )[0];
+      const decrementedKeg = { ...selectedKeg, kegSize: selectedKeg.KegSize + 1};
+      const updatedMasterKegList = this.state.masterKegList
+        .filter(keg => keg.id !== id)
+        .concat(decrementedKeg);
+      this.setState({masterKegList: updatedMasterKegList})
     }
 
     handleAddingNewKegToList = (newKeg) => {
@@ -76,8 +79,7 @@ class KegControl extends React.Component {
       } else if (this.state.selectedKeg != null){
         currentlyVisibleState = <KegDetail 
                                 keg = {this.state.selectedKeg} 
-                                onClickingEdit = {this.handleEditClick} 
-                                onClickingIncrement={this.incrementKegSize}/>
+                                onClickingEdit = {this.handleEditClick} />
                                 buttonText="Return to Keg List";
       } else if (this.state.formVisibleOnPage){
         currentlyVisibleState = <NewKegForm 
@@ -86,7 +88,9 @@ class KegControl extends React.Component {
       } else {
         currentlyVisibleState = <KegList 
                                 kegList={this.state.masterKegList} 
-                                onKegSelection={this.handleChangingSelectedKeg} />
+                                keg = {this.state.selectedKeg} 
+                                onKegSelection={this.handleChangingSelectedKeg}
+                                decrementKeg={this.decrementKegSize} />
                                 buttonText="Add Keg";
       }
       

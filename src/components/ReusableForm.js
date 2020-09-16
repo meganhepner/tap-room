@@ -8,23 +8,23 @@ function ReusableForm(props){
         <input
           type='text'
           name='name'
+          defaultValue={props.defaultName}
           placeholder='Name of Beer' />
         <input
           type='text'
           name='brand'
+          defaultValue={props.defaultBrand}
           placeholder='Brand Name' />
         <input
           type='number'
           name='price'
+          defaultValue={props.defaultPrice}
           placeholder='Price per Pint' />
         <input
           type='number'
           name='alcoholContent'
+          defaultValue={props.defaultAlcoholContent}
           placeholder='ABV' />
-        <input
-          type='number'
-          name='kegSize'
-          placeholder='Pints in Keg' />
         <button type='submit'>{props.buttonText}</button>
       </form>
     </React.Fragment>
@@ -33,7 +33,11 @@ function ReusableForm(props){
 
 ReusableForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
-  buttonText: PropTypes.string
+  buttonText: PropTypes.string,
+  defaultName: PropTypes.string,
+  defaultBrand: PropTypes.string,
+  defaultPrice: PropTypes.number,
+  defaultAlcoholContent: PropTypes.number
 };
 
 export default ReusableForm;

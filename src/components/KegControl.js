@@ -30,15 +30,9 @@ class KegControl extends React.Component {
       }
     }
 
-    decrementKegSize = (id) => {
-      const selectedKeg = this.state.masterKegList.filter(
-        (keg) => keg.id === id
-      )[0];
-      const decrementedKeg = { ...selectedKeg, kegSize: selectedKeg.KegSize + 1};
-      const updatedMasterKegList = this.state.masterKegList
-        .filter(keg => keg.id !== id)
-        .concat(decrementedKeg);
-      this.setState({masterKegList: updatedMasterKegList})
+    
+    handleEditClick = () => {
+      this.setState({editing: true});
     }
 
     handleAddingNewKegToList = (newKeg) => {
@@ -52,10 +46,6 @@ class KegControl extends React.Component {
       this.setState({selectedKeg: selectedKeg});
     }
 
-    handleEditClick = () => {
-      this.setState({editing: true});
-    }
-
     handleEditingKegInList = (kegToEdit) => {
       const editedMasterKegList = this.state.masterKegList
         .filter(keg => keg.id !== this.state.selectedKeg.id)
@@ -65,6 +55,29 @@ class KegControl extends React.Component {
         editing: false,
         selectedKeg: null
       });
+    }
+
+    handleDeletingKeg = (id) => {
+      const newMasterKegList = this.state.masterKegList.filter(
+        (keg) => keg.id !== id
+      );
+      this.setState({
+        masterKegList: newMasterKegList,
+        selectedKeg: null,
+      });
+    };
+
+    handleDecrementKegSize = (id) => {
+      const selectedKeg = this.state.masterKegList.filter(
+        (keg) => keg.id === id
+      )[0];
+      if (selectedKeg.kegSize > 0) {
+      const decrementedKeg = { ...selectedKeg, kegSize: selectedKeg.kegSize - 1};
+      const updatedMasterKegList = this.state.masterKegList
+        .filter(keg => keg.id !== id)
+        .concat(decrementedKeg);
+      this.setState({masterKegList: updatedMasterKegList})
+      }
     }
 
     render(){
@@ -79,6 +92,7 @@ class KegControl extends React.Component {
       } else if (this.state.selectedKeg != null){
         currentlyVisibleState = <KegDetail 
                                 keg = {this.state.selectedKeg} 
+                                onClickingDelete = {this.handleDeletingKeg}
                                 onClickingEdit = {this.handleEditClick} />
                                 buttonText="Return to Keg List";
       } else if (this.state.formVisibleOnPage){
@@ -88,17 +102,16 @@ class KegControl extends React.Component {
       } else {
         currentlyVisibleState = <KegList 
                                 kegList={this.state.masterKegList} 
-                                keg = {this.state.selectedKeg} 
                                 onKegSelection={this.handleChangingSelectedKeg}
-                                decrementKeg={this.decrementKegSize} />
+                                onChangeKegSizeSelection={this.handleDecrementKegSize} />
                                 buttonText="Add Keg";
       }
       
       
     return (
       <React.Fragment>
-        {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
+        { currentlyVisibleState }
+        <button onClick={ this.handleClick }>{buttonText}</button>
       </React.Fragment>
     );
   }

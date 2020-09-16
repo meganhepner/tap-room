@@ -12,20 +12,27 @@ function EditKegForm (props) {
             brand: event.target.brand.value,
             price: event.target.price.value,
             alcoholContent: event.target.alcoholContent.value,
+            kegSize: keg.kegSize,
             id: keg.id
         });
     }
     return(
         <React.Fragment>
-          <ReusableForm
-            formSubmissionHandler={handleEditKegFormSubmission}
-            buttonText="Update Keg" />
+            <ReusableForm
+                formSubmissionHandler={handleEditKegFormSubmission}
+                buttonText="Update Keg" 
+                defaultName={keg.name}
+                defaultBrand={keg.brand}
+                defaultPrice={keg.price}
+                defaultAloholContent={keg.alcoholContent}
+            />
         </React.Fragment>
         
     );
 }
 
 EditKegForm.propTypes = {
+    keg: PropTypes.object,
     onEditKeg: PropTypes.func
 };
 

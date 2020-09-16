@@ -24,7 +24,7 @@ function EditKegForm (props) {
                 defaultName={keg.name}
                 defaultBrand={keg.brand}
                 defaultPrice={keg.price}
-                defaultAloholContent={keg.alcoholContent}
+                defaultAlcoholContent={keg.alcoholContent}
             />
         </React.Fragment>
         
